@@ -1,11 +1,21 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 
 const LoginForm = () => {
-  const error = "";
+  const [error, setError] = useState("");
+
   const handleLogin = (e) => {
     e.preventDefault();
-    const validUsername = "user";
+
+    const validUsername = "username";
     const validPassword = "password";
+    var { username, password } = document.forms[0];
+    if (validUsername !== username.value || validPassword !== password.value) {
+      setError("username and password incorrect");
+    } else {
+      alert("login successfull");
+      setError("");
+    }
   };
 
   return (
@@ -15,11 +25,11 @@ const LoginForm = () => {
       <form onSubmit={handleLogin}>
         <div>
           <label>Username:</label>
-          <input type="text"  />
+          <input name="username" type="text" />
         </div>
         <div>
           <label>Password:</label>
-          <input type="password"  />
+          <input name="password" type="password" />
         </div>
         <button type="submit">Login</button>
       </form>
